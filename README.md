@@ -40,3 +40,9 @@ Current application screenshots use simulated operating data. They document a fu
 ![Meridian - Operations Overview](assets/screenshots/SS1_Meridian_Operations_Overview.jpg)
 
 [SS2 - Inventory Planning](assets/screenshots/SS2_Meridian_Inventory_Planning.jpg) · [SS3 - Freight Route Map](assets/screenshots/SS3_Meridian_Freight_Route_Map.jpg)
+
+## Who it benefits
+
+E-commerce brands, purchasing and inventory planners, freight coordinators, warehouse teams and client-service staff: connected visibility from supplier orders through receipts and customer follow-up.
+
+These are intended users and benefits, not evidence of adoption or measured customer outcomes.
