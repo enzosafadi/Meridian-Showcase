@@ -34,3 +34,17 @@ The reproducible baseline spans **1 October 2025 to 30 September 2026**, with 8 
 Scenarios include production delays, split deliveries, freight delays, damaged or missing receipts, seasonal demand and stockouts. Eight local automated tests passed, covering quantity reconciliation, nonnegative stock, dates, historical client updates and reproducibility. These are simulated operating results, not demonstrated client savings.
 
 The implementation, schema and full reproduction instructions reside in the private core repository. The public repository contains the portfolio presentation. The first operations interface supports combined brand and warehouse filters, demand and fulfilment trends, searchable/sortable records, pagination, detail panels and labelled CSV exports. All 12 local automated tests passed. Browser checks also verified combined filters, record details, shipment search, pagination and a filtered CSV download. The private first version is ready for owner review; full module workflows, persistent changes, live integrations, SOPs and final portfolio screenshots remain to be built.
+
+## Screenshots
+
+Current application screenshots, captured on 27 October 2026. All displayed operations and results are simulated. The application is a working, read-only web interface; these images document its current state.
+
+### SS1 - Operations Overview
+
+![Meridian - Operations Overview](assets/screenshots/SS1_Meridian_Operations_Overview.jpg)
+
+### SS2 - Inventory Risks
+
+![Meridian - Inventory Risks with numbered rows](assets/screenshots/SS2_Meridian_Inventory_Risks.jpg)
+
+Screenshots will be refreshed as the application develops. The core remains private; this showcase presents implemented features without publishing private source code.
