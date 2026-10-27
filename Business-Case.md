@@ -1,146 +1,85 @@
 # Meridian - Business Case
 
-**E-commerce Supply Chain & Client Operations**  
-Version 1.0 | 27 October 2026 | Status: proposed solution; data foundation completed
+E-commerce Supply Chain & Client Operations  
+27 October 2026 · Revised project brief
 
-> **Portfolio context:** I am developing Meridian around a hypothetical supply-chain coordination business serving e-commerce brands. All business entities, operating records and results are simulated. The requirements are informed by the responsibilities described in a public logistics coordination vacancy; they are not the result of a client engagement, stakeholder interviews or an assessment of that employer's internal operations. Benefits and targets below are proposals to validate, not achieved outcomes.
+*Meridian is an independent portfolio project based on a hypothetical business serving e-commerce brands. All operating data is simulated. The starting brief came from the coordination responsibilities described in a public logistics vacancy; this document does not describe an engagement with that employer.*
 
-## 1. Executive Recommendation
+## Why I chose this problem
 
-I propose Meridian as an operational coordination platform connecting purchasing, manufacturing, inventory, freight, warehouse receipts and client communication. Its purpose is to help a coordinator identify what requires attention, understand the business impact, assign the next action and communicate a consistent account-level update.
+A supply-chain coordinator can spend much of the day answering a question that sounds straightforward: where is this order, and what happens next?
 
-My business case is based on a simple operating problem: a product can move through several organisations, while responsibility for following up and explaining its status remains with one coordination team. If purchase orders, supplier messages, shipment updates and warehouse receipts are maintained separately, the team must reconstruct the same story repeatedly. A delayed production milestone may not be reflected in a stock-risk assessment or the next client update.
+The answer may require checking a manufacturer's latest message, a purchasing spreadsheet, a freight update and a warehouse receipt. Each record describes part of the journey. The coordinator still has to work out whether those records agree and what the client needs to know.
 
-I recommend building a focused demonstration of this connected workflow before pursuing production integrations or commercial claims. The investment decision should depend on measured improvements in coordination time, exception handling and record accuracy, alongside the cost of operating the system.
+I chose this problem because the coordination effort is easy to underestimate. Tracking more orders is only part of the workload. Each additional brand brings its own products, commitments, questions and unresolved issues. A process that works for a few accounts can become difficult to maintain as the business grows.
 
-## 2. Business Context and Problem Definition
+For Meridian, I am working with the assumption that this information is spread across separate files and communication channels. That assumption would need to be checked with a real team. The project explores whether connecting those records can make daily coordination more reliable and less time-consuming.
 
-The target operating model is a small or medium-sized supply-chain services business managing multiple e-commerce brand accounts. Manufacturers, freight forwarders and third-party logistics providers remain responsible for their respective services. The coordination team manages visibility, follow-through and client communication across those boundaries.
+## What Meridian should change
 
-The following conditions are **design assumptions to test**, not verified findings about a particular company:
+My proposal is to give the coordinator a consistent view of an order from purchasing through warehouse receipt, with inventory and follow-ups attached to that same operating picture.
 
-| Assumed operating challenge | Business consequence | Capability needed |
-|---|---|---|
-| Order information sits across spreadsheets and messages | Repeated status checks and inconsistent updates | Linked purchase-order and production records |
-| Supplier delays are reviewed separately from stock | Replenishment or freight decisions may come too late | Exception visibility alongside inventory cover |
-| Packing lists and warehouse receipts are reconciled manually | Shortages and damage may be missed or followed up late | Expected-versus-received reconciliation |
-| Follow-ups depend on individual memory | Actions can remain unowned or overdue | Named owners, due dates and escalation rules |
-| Client reports are assembled account by account | Coordination effort grows with each additional brand | Brand-specific summaries with traceable source records |
+The useful part is the context. A shipment that is five days late may not need urgent intervention if the brand has enough stock. A smaller delay on a fast-moving product could require an immediate decision. The coordinator should be able to see that difference without rebuilding the analysis from several files.
 
-The problem is therefore not simply a lack of charts. It is the absence of a consistent link between an operating event, its consequences, the person responsible and the decision or communication required.
+Meridian is organised around six areas: production and purchasing, inventory planning, freight coordination, warehouse receipts, client communication, and action tracking. Together, these should let a user follow an order, investigate a problem and prepare an update from consistent records.
 
-## 3. Business Objectives and Stakeholders
+For example, consider a fictional brand waiting for a shipment of bottles. The manufacturer misses its promised readiness date. The coordinator needs to establish the revised date, check how much saleable stock remains and determine whether the client needs to approve a change in freight or purchasing.
 
-My objectives are to reduce avoidable coordination work, strengthen the reliability of operational records and make important decisions visible earlier. I also want the solution to support additional brand accounts without requiring a proportional increase in manual reporting effort.
+When the shipment arrives, the warehouse may report fewer usable units than expected. Meridian should preserve the difference between what was ordered, what was shipped and what was accepted. Damaged and missing units need a follow-up; they must not silently become available stock.
 
-| Stakeholder | Need | Proposed responsibility |
-|---|---|---|
-| Operations lead | Account health and unresolved decisions | Own workflow policy and approve escalations |
-| Supply-chain coordinator | A prioritised daily workload | Maintain records, investigate exceptions and prepare updates |
-| Brand/client contact | Clear progress, risks and decisions needed | Approve purchasing or service decisions within agreed authority |
-| Manufacturer contact | Clear orders, quantities and readiness dates | Confirm production commitments and changes |
-| Freight forwarder | Consistent shipment information | Confirm bookings, departures and revised arrival estimates |
-| Warehouse/3PL contact | Accurate expected receipts and discrepancy details | Confirm stock receivals and reconcile differences |
+The coordinator owns that follow-up. The operations lead sets escalation rules, while the client or another authorised person approves decisions involving additional spending. Suppliers, forwarders and warehouse contacts provide the underlying confirmations. Software can make those responsibilities visible, but the people involved still have to act.
 
-These roles are proposed for the demonstration. Actual ownership, approval limits and service expectations would need agreement during implementation discovery.
+## Why build a dedicated tool?
 
-## 4. Options Considered
+Better spreadsheets are a credible alternative. Standard templates, consistent naming and clear operating procedures may solve much of the problem for a small team. They would also require less development and ongoing support.
 
-| Option | Advantages | Limitations | Assessment |
-|---|---|---|---|
-| Continue with separate spreadsheets and messages | Minimal setup; familiar tools | Repeated reconciliation and fragmented follow-ups remain | Useful baseline for comparison |
-| Standardise spreadsheets, templates and SOPs | Lower implementation effort; faster initial adoption | Cross-record consistency and multi-account coordination remain dependent on manual discipline | Credible lower-cost alternative |
-| Build Meridian as a focused coordination platform | Connects records, exceptions, actions and client summaries | Requires development, validation, maintenance and adoption | Recommended for a staged portfolio demonstration |
-| Adopt a comprehensive ERP/WMS suite | Broader transaction processing and established integrations | Fit, licensing, configuration and process-change effort require evaluation | Assess if wider enterprise requirements justify it |
+An established ERP or warehouse management system is another option, particularly where a business needs broader transaction processing. Its suitability would depend on the actual requirements, configuration effort and total cost.
 
-I would not assume that custom software is automatically the best commercial choice. If standardised spreadsheets satisfy a real team's volume, control and reporting needs at lower total cost, that option may be preferable. Meridian must demonstrate a meaningful advantage through connected workflows.
+I am developing Meridian to test a more focused approach: connecting the records and decisions that a coordination team handles every day. The case for it becomes stronger when repeated reconciliation, account reporting and missed follow-ups consume enough effort to justify maintaining an application.
 
-## 5. Proposed Solution and Scope
+That is something to demonstrate, not assume. If a well-run spreadsheet process achieves the same result at lower cost, custom software would need another clear advantage.
 
-| Module | Intended operational capability | Decision or action supported |
-|---|---|---|
-| Production & Purchasing | Track orders, quantities, supplier commitments and production milestones | Follow up with suppliers and review purchasing requirements |
-| Inventory Planning | Review stock cover, demand history, incoming quantities and replenishment recommendations | Decide what to reorder and which stock risks need intervention |
-| Freight Coordination | Track shipment quantities, packing lists, departure dates and arrival estimates | Review late freight and potential consolidation opportunities |
-| Warehouse Receipts | Reconcile expected, accepted, damaged and missing units; validate sample receipt exports | Resolve discrepancies before treating inventory as available |
-| Client Communications | Prepare brand-specific summaries linked to current operating records | Review and approve consistent client updates |
-| Action & Escalation Centre | Assign owners, deadlines and follow-ups with resolution history | Prioritise work and escalate decisions to the appropriate authority |
+The initial scope therefore stays close to coordination. It does not include accounting, payroll or autonomous purchasing. Client messages and spending decisions require human review. Shopify and Canary7 workflows will begin with sample imports or exports; live connections depend on verified specifications and authorised access.
 
-The application will support filtering by brand and warehouse, with a cross-account operations overview. Recommendations and draft communications will remain subject to human review. Meridian will not automatically purchase stock, commit freight spending or send client messages in the demonstration.
+## How I would judge its value
 
-**Outside the initial scope:** full financial accounting, payroll, a replacement ERP or WMS, live payment processing, autonomous procurement, production-grade customer access and guaranteed prevention of stockouts. Shopify, Canary7 and other integrations require verified specifications and authorised access; initial workflows will use clearly labelled sample imports or exports. The project does not currently include an AI agent.
+The first benefit I would investigate is time spent preparing and checking account updates. A coordinator should be able to spend more time resolving an issue and less time finding out what happened.
 
-## 6. Example End-to-End Business Scenario
+I would also examine how quickly important exceptions are acknowledged, whether follow-ups have clear owners, and whether stock records remain consistent after partial or damaged deliveries.
 
-Consider a fictional brand with an open purchase order for insulated bottles. The manufacturer misses its committed readiness date. Meridian should surface the affected order alongside current stock cover, the incoming quantity and the assigned supplier follow-up.
+For a pilot, I would measure the existing process before setting a final improvement target. The comparison should use similar accounts and transaction complexity, with the same incoming information available to both workflows. Comparing a simple demonstration with a busy operating team would not provide a fair result.
 
-The coordinator obtains a revised readiness date and reviews whether the resulting stock exposure requires a purchasing or freight decision. An authorised person decides whether any additional cost is justified. The account update reflects the confirmed information and identifies the outstanding decision.
+There are a few acceptance conditions I would treat as essential:
 
-When the shipment reaches the warehouse, the receipt separates accepted units from damaged or missing units. Only accepted units enter saleable stock. A discrepancy creates an owned follow-up, while the client summary draws from the same operating records. Completing a follow-up does not, by itself, prove that the underlying shortage has been resolved.
+- Closing stock must reconcile to opening stock, accepted receipts and fulfilled sales.
+- Each receipt must explain its expected, accepted, damaged and missing quantities.
+- Every exception must have an assigned owner and a due date.
+- A client update must agree with the records available on its preparation date.
 
-This scenario describes the intended application workflow. The current foundation contains simulated delay and discrepancy events; the interactive decision workflow has not yet been implemented.
+These checks establish whether the information can be trusted. Usability and commercial value need separate evidence.
 
-## 7. Expected Value and Financial Assessment
+There is no supported return-on-investment figure at this stage. A financial assessment would include development, hosting, maintenance, integration work and training. Any value assigned to time saved should use observed hours and an agreed labour cost. Released staff capacity should only be called a cash saving if it actually reduces expenditure.
 
-| Expected benefit | How I would validate it |
-|---|---|
-| Less time assembling client updates | Time equivalent reporting tasks before and after adoption |
-| Faster attention to important exceptions | Measure detection-to-acknowledgement and detection-to-decision intervals |
-| More reliable stock records | Reconcile accepted receipts and fulfilled sales against stock movements |
-| Better accountability | Measure actions with an owner, due date and recorded resolution |
-| More manageable account growth | Compare coordination hours per account at similar transaction complexity |
+Likewise, displaying a stockout does not show that Meridian prevented one. A claim about fewer stockouts would require a controlled comparison or a pilot that can distinguish the effect of the tool from changes in demand or supplier performance.
 
-I have not established a real operating baseline, implementation budget or return on investment. The simulated data cannot establish staff time saved, recovered revenue or commercial payback.
+## Practical concerns
 
-For a future pilot, I would calculate:
+The main dependency is the quality of the incoming information. A connected application will still be wrong if a supplier date is stale or a warehouse receipt is incomplete. The finished workflow needs to make the source and age of important updates visible, and show where confirmation is still outstanding.
 
-**Monthly capacity value = verified hours saved per month × agreed fully loaded hourly cost.**
+Alert volume also needs attention. If every delay appears equally urgent, the coordinator gains another list to clear. I want priorities to reflect stock exposure, time sensitivity and the decision required. The first version provides a starting view of these issues; its thresholds still need to be tested through realistic scenarios.
 
-**Monthly net benefit = capacity value + independently validated incremental benefits − recurring operating costs.**
+There is also an adoption question. Someone must own each record and know when to update it. Before a real implementation, I would agree those responsibilities, approval limits and working-time expectations with the team.
 
-**Simple payback in months = one-time implementation cost ÷ positive monthly net benefit.**
+Real client use would additionally require account access controls, an audit trail, backup arrangements and agreed support responsibilities. Those requirements are part of assessing readiness for a pilot, not capabilities I am claiming for the current demonstration.
 
-Capacity released is not automatically a cash saving. I would avoid double-counting time savings, recovered margin and avoided costs, and use contribution margin rather than gross revenue when valuing genuinely recovered sales. If the net benefit is not positive or cannot be evidenced, there is no supported payback claim.
+## Where the project stands
 
-## 8. Success Measures and Acceptance Criteria
+The simulated foundation covers eight brands, 250 SKUs, 20 manufacturers and four Australian warehouses over twelve months. It includes purchase orders, shipments, receipts, inventory movements, exceptions and sample client update drafts.
 
-The following are proposed acceptance criteria for the demonstration and a future pilot. They are not contractual service levels or achieved business improvements.
+The first operations interface is now built and privately deployed for review. It supports brand and warehouse filters, record searches, detail views and exports. Twelve automated tests passed across the data foundation and overview calculations. Browser checks also covered filtering, record details, shipment search, pagination and a filtered export.
 
-| Measure | Definition | Proposed criterion |
-|---|---|---|
-| Inventory reconciliation | Opening units + accepted receipts − fulfilled sales = closing units, per SKU and warehouse | Zero unexplained variance across the simulated period |
-| Receipt completeness | Expected units = accepted + damaged + missing | Every recorded receipt reconciles |
-| Quantity traceability | Purchase-order quantities linked to planned shipment quantities | Every order reconciles to its shipments |
-| Exception ownership | Exceptions with an assigned follow-up owner and deadline / all exceptions | 100% in the demonstration |
-| Client summary integrity | Summary counts agree with the account's records as of the preparation date | All tested drafts reconcile; no future actual data included |
-| Reporting effort | Median time to prepare and verify an update for an equivalent account | Proposed pilot target: at least 25% below an observed baseline |
-| Critical exception acknowledgement | High-priority incidents acknowledged within the agreed working-time window / eligible incidents | Propose one business day; confirm coverage and ownership during discovery |
+This first interface is read-only. The complete operational modules, editable workflows, approval handling and live integrations have not been delivered yet.
 
-The data foundation already passes automated quantity, chronology and reconciliation checks. That evidence supports dataset integrity only. It does not prove usability, reporting-time savings or a reduction in operational losses.
+My next step is to review the overview, then develop the detailed workflows against the business questions above. The demonstration will be ready for its portfolio release when a reviewer can follow an order through the process, understand an exception, identify the responsible person and see how the account update follows from the records.
 
-For benefit evaluation, I would use matched coordination tasks and the same incoming event information for both the baseline and Meridian. A stockout-reduction claim would require replaying the same demand under alternative decisions or observing a suitably controlled pilot. Displaying historical stockouts on a dashboard is not evidence that the system prevented them.
-
-## 9. Risks, Dependencies and Controls
-
-| Risk or dependency | Proposed response |
-|---|---|
-| Inaccurate or stale external updates | Display source and update date; require reconciliation and explicit uncertainty |
-| Nominal demand or lead times produce weak recommendations | Show assumptions; validate forecasts and lead-time sensitivity before relying on recommendations |
-| Too many alerts obscure important work | Prioritise by stock exposure, time sensitivity and decision authority; test thresholds |
-| Live platform formats differ from sample exports | Validate against approved specifications and a sandbox before integration |
-| Cross-account information is exposed | Design account access boundaries, roles and audit controls before real client use |
-| Coordinators continue parallel records | Agree record ownership, train users and test the workflow with realistic tasks |
-| Simulated performance is mistaken for client results | Label the demonstration and distinguish calculations, targets and measured outcomes |
-| Maintenance and integration effort outweigh value | Compare total cost with the standardised-spreadsheet and established-software alternatives |
-
-## 10. Delivery Approach and Decision Gates
-
-| Stage | Output | Gate before proceeding |
-|---|---|---|
-| Foundation — completed | Reproducible simulated data, schema, review sample and validation tests | Master records, quantities and historical dates reconcile |
-| Application — next | Operations overview and six connected modules | A coordinator can investigate a scenario and identify the next action |
-| Workflow validation | Scenario walkthroughs, exports, approvals and SOPs | Expected records, exception handling and permissions behave correctly |
-| Portfolio release | User guide, consistent showcase material and three selected screenshots | Presentation matches implemented behaviour and labels simulated results |
-| Real-world pilot — conditional future phase | Stakeholder discovery, approved integrations, operating support and measured baseline | Explicit scope, access controls, budget and benefit-evaluation agreement |
-
-My recommendation is to proceed with the application stage against this business case. I would consider the demonstration successful when a reviewer can follow a product from purchasing through receipt, see an exception's business context, identify its owner and understand the resulting client update. Commercial deployment remains a separate decision requiring real stakeholder validation and a credible cost-benefit assessment.
+A commercial pilot would be a separate decision. It would need real stakeholder discovery, a measured baseline, an implementation budget and agreement on what improvement would justify continuing.
