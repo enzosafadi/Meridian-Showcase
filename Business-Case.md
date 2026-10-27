@@ -76,10 +76,10 @@ Real client use would additionally require account access controls, an audit tra
 
 The simulated foundation covers eight brands, 250 SKUs, 20 manufacturers and four Australian warehouses over twelve months. It includes purchase orders, shipments, receipts, inventory movements, exceptions and sample client update drafts.
 
-The first operations interface is now built and privately deployed for review. It supports brand and warehouse filters, record searches, detail views and exports. Twelve automated tests passed across the data foundation and overview calculations. Browser checks also covered filtering, record details, shipment search, pagination and a filtered export.
+The six-module demonstration is now implemented with a persistent personal workspace. It supports draft purchase orders and approvals, inventory planning, an illustrative air/sea route map, freight updates, warehouse receipt reconciliation, client update drafts and owned follow-ups. Twenty-six automated tests passed across the data foundation, overview and operational rules; TypeScript validation and a production build also passed. Browser checks covered saved PO approval across reloads, receipt validation and discrepancy follow-ups, client draft approvals, CSV upload rejection, filtering, details, pagination and exports.
 
-This first interface is read-only. The complete operational modules, editable workflows, approval handling and live integrations have not been delivered yet.
+Demo changes are saved on the server and remain separate from the reproducible historical baseline. No external orders or messages are submitted. Live integrations and production approval controls remain outside this demonstration.
 
-My next step is to review the overview, then develop the detailed workflows against the business questions above. The demonstration will be ready for its portfolio release when a reviewer can follow an order through the process, understand an exception, identify the responsible person and see how the account update follows from the records.
+The demonstration now lets a reviewer follow an order through the process, understand an exception, identify the responsible person and prepare an account update from the same records. The next decision is whether to release public demo access after owner review.
 
 A commercial pilot would be a separate decision. It would need real stakeholder discovery, a measured baseline, an implementation budget and agreement on what improvement would justify continuing.

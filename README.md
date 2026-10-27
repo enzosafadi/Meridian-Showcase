@@ -1,50 +1,42 @@
 # Meridian - Showcase
-Meridian - E-commerce Supply Chain & Client Operations. Public portfolio showcase using simulated data. Development in progress.
 
-## Business Case
+E-commerce Supply Chain & Client Operations. A portfolio demonstration using simulated data.
 
-Read the [Meridian - Business Case](Business-Case.md) for the business problem, options assessment, proposed value, scope, success measures and delivery approach.
+**Release 1.0 — six operational modules, saved demo workflows and an illustrative air/sea freight map.**
 
-## Terminology
+[Business Case](Business-Case.md) · [User Guide](docs/User-Guide.md) · [Architecture](docs/Architecture.md)
 
-**SKU (Stock Keeping Unit):** A company's internal identifier for a specific product variant. Different sizes, colours or configurations receive separate SKUs. For example, a black 750 mL bottle might use `BTL-750-BLK`, while its white equivalent uses `BTL-750-WHT`.
+## Demonstration scope
 
-A **barcode** is a machine-readable symbol that encodes an identifier. An SKU identifies a product variant within the business; a barcode provides a scannable representation of an identifier, which may be an SKU or another code such as a GTIN.
+| Module | Implemented workflow |
+|---|---|
+| Production & Purchasing | Draft and approve POs, validate MOQ/cartons, revise readiness and record completion |
+| Inventory Planning | All 250 SKUs, stock cover, recent requested demand, stock value and replenishment suggestions |
+| Freight Coordination | Air/sea route map, packing details, bookings, departure/ETA updates and consolidation proposals |
+| Warehouse Receipts | Expected/accepted/damaged/missing reconciliation, validated sample CSV batches and discrepancy follow-ups |
+| Client Communications | Account briefing, editable draft versions, approvals and text exports; nothing sent |
+| Actions & Escalations | Assigned deadlines, resolution notes, reopening, reassignment and activity history |
 
-Meridian's demonstration includes **250 SKUs**, meaning 250 distinct product variants tracked across purchasing, production, inventory, freight and warehouse receipts. All demonstration data will be simulated.
+Brand and warehouse filters, numbered tables, search, status filters, pagination and exports are included. Signed-in demo changes persist in a server-side personal workspace. Historical baseline data remains reproducible and unchanged.
 
+The scenario date is 30 September 2026. Actual event dates respect that cutoff; plans may extend beyond it. The map uses approximate geography and illustrative routes; packaging weights and volumes are demonstration assumptions, not carrier measurements. The inventory policy uses recent average demand, nominal lead times, MOQ and cartons; it is not an optimised forecast.
 
-## Development status
+No external supplier orders, carrier bookings, email, WeChat messages, Shopify or Canary7 transactions are submitted. Sample receipt files are not certified vendor imports. This is a completed portfolio demonstration of the agreed workflows, not a production ERP or evidence of achieved client savings.
 
-**Data foundation completed; first read-only operations interface implemented.** This is a simulated portfolio project, not client work or a live production system.
+## Data and validation
 
-The reproducible baseline spans **1 October 2025 to 30 September 2026**, with 8 fictional brands, 250 SKUs, 20 manufacturers and 4 Australian warehouses. All monetary amounts use AUD cents.
+8 fictional brands, 250 SKUs, 20 manufacturers and 4 Australian warehouses over twelve months. The baseline includes 2,473 purchase orders, 2,890 shipments, 2,498 receipts and 2,072 operational exceptions. Values are simulated; monetary figures use AUD.
 
-| Generated records | Count |
-|---|---:|
-| Purchase orders | 2,473 |
-| Shipments | 2,890 |
-| Warehouse receipts | 2,498 |
-| Daily demand records | 91,250 |
-| Daily inventory snapshots | 91,250 |
-| Operational exceptions | 2,072 |
-| Assigned follow-ups | 2,072 |
-| Unsent client update drafts | 416 |
+26 automated tests pass, alongside TypeScript validation, a production build and browser workflow checks. The live demonstration remains private pending a separate public-access decision. The implementation stays in the private core repository.
 
-Scenarios include production delays, split deliveries, freight delays, damaged or missing receipts, seasonal demand and stockouts. Eight local automated tests passed, covering quantity reconciliation, nonnegative stock, dates, historical client updates and reproducibility. These are simulated operating results, not demonstrated client savings.
+## SKU definition
 
-The implementation, schema and full reproduction instructions reside in the private core repository. The public repository contains the portfolio presentation. The first operations interface supports combined brand and warehouse filters, demand and fulfilment trends, searchable/sortable records, pagination, detail panels and labelled CSV exports. All 12 local automated tests passed. Browser checks also verified combined filters, record details, shipment search, pagination and a filtered CSV download. The private first version is ready for owner review; full module workflows, persistent changes, live integrations, SOPs and final portfolio screenshots remain to be built.
+An **SKU (Stock Keeping Unit)** identifies a specific product variant within a business. Different colours or sizes receive different SKUs. A barcode is the scannable symbol used to encode an identifier.
 
 ## Screenshots
 
-Current application screenshots, captured on 27 October 2026. All displayed operations and results are simulated. The application is a working, read-only web interface; these images document its current state.
-
-### SS1 - Operations Overview
+Current application screenshots use simulated operating data. They document a functioning web application, not image mockups.
 
 ![Meridian - Operations Overview](assets/screenshots/SS1_Meridian_Operations_Overview.jpg)
 
-### SS2 - Inventory Risks
-
-![Meridian - Inventory Risks with numbered rows](assets/screenshots/SS2_Meridian_Inventory_Risks.jpg)
-
-Screenshots will be refreshed as the application develops. The core remains private; this showcase presents implemented features without publishing private source code.
+[SS2 - Inventory Planning](assets/screenshots/SS2_Meridian_Inventory_Planning.jpg) · [SS3 - Freight Route Map](assets/screenshots/SS3_Meridian_Freight_Route_Map.jpg)
