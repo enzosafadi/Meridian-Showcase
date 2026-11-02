@@ -1,5 +1,9 @@
 # Meridian - Showcase
 
+## Project roadmap — concept to sale
+
+![Current project timeline](docs/project-roadmap.svg)
+
 E-commerce Supply Chain & Client Operations. A portfolio demonstration using simulated data.
 
 **Release 1.0 — six operational modules, saved demo workflows and an illustrative air/sea freight map.**
