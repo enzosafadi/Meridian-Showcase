@@ -1,6 +1,8 @@
 """Repeatable repository checks. Exit nonzero for any failed configured gate."""
 import argparse, ast, hashlib, json, os, re, subprocess, sys
 from pathlib import Path
+from urllib.parse import unquote, urlsplit
+import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).resolve().parents[1]
 PATTERNS={
@@ -12,9 +14,22 @@ PATTERNS={
 
 def verify(visibility, run_tests=True):
  config=json.loads((ROOT/'verification-config.json').read_text())
- errors=[]; counts={'syntax':0,'pdfs':0,'test_commands':0}
+ errors=[]; counts={'syntax':0,'pdfs':0,'test_commands':0,'document_links':0,'roadmaps':0}
  if config['visibility']!=visibility: errors.append('Configured and actual repository visibility disagree.')
  if visibility=='public' and (ROOT/'Project Documents').exists(): errors.append('Public repository contains Project Documents.')
+ for p in ROOT.rglob('*.md'):
+  if any(x in p.parts for x in ('.git','node_modules','.venv','archive','Retired','.pytest_cache','evidence')) or p.name in ('CHANGELOG.md','VERSION-REGISTER.md'):continue
+  for target in re.findall(r'!?\[[^\]]*\]\(([^)]+)\)',p.read_text(errors='replace')):
+   parsed=urlsplit(target.strip('<>'))
+   if parsed.scheme or parsed.netloc or not parsed.path:continue
+   counts['document_links']+=1
+   if not (p.parent/unquote(parsed.path)).resolve().exists():errors.append(f'Broken document link: {p.relative_to(ROOT)} -> {target}')
+ for p in (ROOT/'docs').glob('*roadmap.svg'):
+  svg=ET.parse(p).getroot();ns='{http://www.w3.org/2000/svg}'
+  markers=[r for r in svg.iter(ns+'rect') if r.attrib.get('fill','').lower()=='#102b52' and float(r.attrib.get('width',0))>=16 and float(r.attrib.get('height',0))>=100 and float(r.attrib.get('height',0))>4*float(r.attrib.get('width',0))]
+  labels=[(x.text or '').strip() for x in svg.iter(ns+'text')]
+  if len(markers)!=1 or 'SALE' not in labels or 'CURRENT' not in labels:errors.append(f'Missing required navy vertical current-stage marker: {p.relative_to(ROOT)}')
+  counts['roadmaps']+=1
  for p in ROOT.rglob('*'):
   if not p.is_file() or any(x in p.parts for x in ('.git','node_modules','.venv','archive','Retired','.pytest_cache','__pycache__','evidence')):continue
   if p.suffix not in ('.py','.js','.mjs','.cjs','.json','.md','.html','.ts','.tsx','.sol','.txt','.yml','.yaml','.ipynb'):continue
