@@ -50,3 +50,7 @@ Current application screenshots use simulated operating data. They document a fu
 E-commerce brands, purchasing and inventory planners, freight coordinators, warehouse teams and client-service staff: connected visibility from supplier orders through receipts and customer follow-up.
 
 These are intended users and benefits, not evidence of adoption or measured customer outcomes.
+
+## Repository verification
+
+[Current scoped verification results](VERIFICATION.md). Run `python tools/verify_repository.py --visibility public`.
